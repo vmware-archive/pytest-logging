@@ -6,7 +6,7 @@ pytest-logging
     :alt: See Build Status on Travis CI
 
 .. image:: https://ci.appveyor.com/api/projects/status/github/saltstack/pytest-logging?branch=master
-    :target: https://ci.appveyor.com/project/saltstack/pytest-logging/branch/master
+    :target: https://ci.appveyor.com/project/saltstack-public/pytest-logging/branch/master
     :alt: See Build Status on AppVeyor
 
 Configures logging and allows tweaking the log level with a py.test flag
