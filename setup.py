@@ -50,6 +50,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     py_modules=['pytest_logging'],
     install_requires=['pytest>=2.8.1'],
+    zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
