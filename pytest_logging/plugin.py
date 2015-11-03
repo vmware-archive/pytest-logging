@@ -90,4 +90,3 @@ def pytest_cmdline_main(config):
     else:
         # The console handler defaults to the highest logging level
         CONSOLEHANDLER.setLevel(logging.FATAL)
-    print(999, verbosity, CONSOLEHANDLER.level)
