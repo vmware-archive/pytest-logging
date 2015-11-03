@@ -28,10 +28,16 @@ def read(fname):
         return rfh.read()
 
 
-# Version info -- read without importing
 _LOCALS = {}
-with open(os.path.join(SETUP_DIRNAME, 'pytest_logging', 'version.py')) as rfh:
-    exec(rfh.read(), None, _LOCALS)  # pylint: disable=exec-used
+try:
+    # Version info -- read without importing
+    with open(os.path.join(SETUP_DIRNAME, 'pytest_logging', 'version.py')) as rfh:
+        exec(rfh.read(), None, _LOCALS)  # pylint: disable=exec-used
+except IOError:
+    # tox egg_info on a zip of this code!? Let's resort to importing
+    sys.path.insert(0, SETUP_DIRNAME)
+    from pytest_logging.version import __version__
+    _LOCALS['__version__'] = __version__
 
 
 VERSION = _LOCALS['__version__']
