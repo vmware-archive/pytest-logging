@@ -5,7 +5,7 @@ from __future__ import absolute_import, with_statement
 import os
 import sys
 import codecs
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # Change to source's directory prior to running any command
 try:
@@ -28,16 +28,10 @@ def read(fname):
         return rfh.read()
 
 
+# Version info -- read without importing
 _LOCALS = {}
-try:
-    # Version info -- read without importing
-    with open(os.path.join(SETUP_DIRNAME, 'pytest_logging', 'version.py')) as rfh:
-        exec(rfh.read(), None, _LOCALS)  # pylint: disable=exec-used
-except IOError:
-    # tox egg_info on a zip of this code!? Let's resort to importing
-    sys.path.insert(0, SETUP_DIRNAME)
-    from pytest_logging.version import __version__
-    _LOCALS['__version__'] = __version__
+with open(os.path.join(SETUP_DIRNAME, 'pytest_logging', 'version.py')) as rfh:
+    exec(rfh.read(), None, _LOCALS)  # pylint: disable=exec-used
 
 
 VERSION = _LOCALS['__version__']
@@ -54,9 +48,8 @@ setup(
     url='https://github.com/saltstack/pytest-logging',
     description='Configures logging and allows tweaking the log level with a py.test flag',
     long_description=LONG_DESCRIPTION,
-    py_modules=['pytest_logging'],
+    packages=find_packages(),
     install_requires=['pytest>=2.8.1'],
-    zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
