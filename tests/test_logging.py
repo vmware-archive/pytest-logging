@@ -1,29 +1,13 @@
 # -*- coding: utf-8 -*-
+'''
+    :codeauthor: :email:`Pedro Algarvio (pedro@algarvio.me)`
+    :copyright: © 2015 by the SaltStack Team, see AUTHORS for more details.
+    :license: Apache 2.0, see LICENSE for more details.
 
 
-def _test_bar_fixture(testdir):
-    '''Make sure that pytest accepts our fixture.'''
-
-    # create a temporary pytest test module
-    testdir.makepyfile('''
-        def test_sth(bar):
-            assert bar == 'europython2015'
-    ''')
-
-    # run pytest with the following cmd args
-    result = testdir.runpytest(
-        '--foo=europython2015',
-        '-v'
-    )
-
-    # fnmatch_lines does an assertion internally
-    result.stdout.fnmatch_lines([
-        '*::test_sth PASSED',
-    ])
-
-    # make sure that that we get a '0' exit code for the testsuite
-    assert result.ret == 0
-
+    test_logging.py
+    ~~~~~~~~~~~~~~~
+'''
 
 def test_help_message(testdir):
     result = testdir.runpytest(
@@ -38,7 +22,7 @@ def test_help_message(testdir):
 def test_log_format_ini_setting(testdir):
     testdir.makeini('''
         [pytest]
-        log_format = %(asctime)s,%(msecs)03.0f [%(name)-5s:%(lineno)-4d][%(levelname)-8s] %(message)s
+        logging_format = %(asctime)s,%(msecs)03.0f [%(name)-5s:%(lineno)-4d][%(levelname)-8s] %(message)s
     ''')
 
     testdir.makepyfile('''
@@ -64,7 +48,7 @@ def test_log_format_ini_setting(testdir):
 def test_log_date_format_ini_setting(testdir):
     testdir.makeini('''
         [pytest]
-        log_date_format = %H:%S
+        logging_date_format = %H:%S
     ''')
 
     testdir.makepyfile('''

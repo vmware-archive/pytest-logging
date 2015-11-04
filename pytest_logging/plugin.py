@@ -49,20 +49,18 @@ def pytest_addoption(parser):
     Add CLI options to py.test
     '''
     group = parser.getgroup('logging', 'Logging Configuration')
-    if parser.getgroup('capturelog', description='Nah!').description == 'Nah!':
-        # We don't have capture log installed, let's add our format flags
-        group.addoption('--log-format',
-                        dest='log_format',
-                        default=LOG_FORMAT,
-                        help='log format as used by the logging module')
-        group.addoption('--log-date-format',
-                        dest='log_date_format',
-                        default=DATE_FORMAT,
-                        help='log date format as used by the logging module')
+    group.addoption('--logging-format',
+                    dest='logging_format',
+                    default=LOG_FORMAT,
+                    help='log format as used by the logging module')
+    group.addoption('--logging-date-format',
+                    dest='logging_date_format',
+                    default=DATE_FORMAT,
+                    help='log date format as used by the logging module')
 
-    parser.addini('log_format',
+    parser.addini('logging_format',
                   'log format as used by the logging module')
-    parser.addini('log_date_format',
+    parser.addini('logging_date_format',
                   'log date format as used by the logging module')
 
 
@@ -72,8 +70,8 @@ def pytest_configure(config):
     '''
     # Get the format options and add the formatter to the console handler
     formatter = logging.Formatter(
-        config.getini('log_format') or config.getvalue('log_format'),
-        config.getini('log_date_format') or config.getvalue('log_date_format'))
+        config.getini('logging_format') or config.getvalue('logging_format'),
+        config.getini('logging_date_format') or config.getvalue('logging_date_format'))
     CONSOLEHANDLER.setFormatter(formatter)
 
 
