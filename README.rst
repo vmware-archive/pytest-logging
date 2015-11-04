@@ -9,6 +9,9 @@ pytest-logging
     :target: https://ci.appveyor.com/project/saltstack-public/pytest-logging/branch/master
     :alt: See Build Status on AppVeyor
 
+.. image:: http://img.shields.io/pypi/v/pytest-logging.svg
+   :target: https://pypi.python.org/pypi/pytest-logging
+
 Configures logging and allows tweaking the log level with a py.test flag
 
 ----
