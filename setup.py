@@ -68,7 +68,7 @@ setup(
     ],
     entry_points={
         'pytest11': [
-            'logging = pytest_logging.plugin',
+            'pytest_logging = pytest_logging.plugin',
         ],
     },
 )
